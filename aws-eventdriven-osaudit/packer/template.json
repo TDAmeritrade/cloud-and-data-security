@@ -1,0 +1,30 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "aws_region",
+    "vpc_id": "aws_vpc_id",
+    "subnet_id": "aws_subnet_id",
+    "associate_public_ip_address": true,
+    "source_ami" : "aws_regional_ami",
+    "instance_type": "aws_ec2_instance_size",
+    "ssh_username": "aws_ec2_user",
+    "ami_name": "{{timestamp}}"
+  }],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "aws-syslog.conf",
+      "destination": "/tmp/awslogs.conf"
+    },
+    {
+      "type": "shell",
+      "script": "baseInit.sh"
+    }
+  ]
+}
