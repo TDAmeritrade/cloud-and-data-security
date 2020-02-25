@@ -1,5 +1,9 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "${var.aws_region}"
+}
+
+variable "aws_region" {
+  type = string
 }
 
 variable "s3_bucket_name" {

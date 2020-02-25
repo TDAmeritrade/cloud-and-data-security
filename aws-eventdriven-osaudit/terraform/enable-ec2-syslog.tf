@@ -1,5 +1,9 @@
 provider "aws" {
-  region  = "us-east-1"
+  region  = "${var.aws_region}"
+}
+
+variable "aws_region" {
+  type = string
 }
 
 data "aws_caller_identity" "current" {}
@@ -155,7 +159,7 @@ EOF
 }
 
 resource "aws_lambda_function" "enable_ec2_syslog_function" {
-  function_name = "Enable-EC2Syslog"
+  function_name = "enable-syslog-lf-${data.aws_region.current.name}"
   role          = "${aws_iam_role.lambda_role.arn}"
   handler       = "index.lambdaHandler"
   runtime       = "python3.7"
@@ -178,8 +182,8 @@ resource "aws_lambda_permission" "lambda_permission" {
 }
 
 resource "aws_cloudwatch_event_rule" "enableec2syslog_rule" {
-  name        = "Enable-EC2Syslog"
-  description = "Attach EC2 IAM Role per new Instance startup via lambda for Syslog"
+  name        = "enable-syslog-er-${data.aws_region.current.name}"
+  description = "Event rule to monitor ec2:RunInstance, ec2:StartInstances, and ec2:RebootInstances"
   role_arn    = "${aws_iam_role.invocation_role.arn}"
   event_pattern = <<PATTERN
 {

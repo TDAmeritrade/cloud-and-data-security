@@ -1,5 +1,9 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "${var.aws_region}"
+}
+
+variable "aws_region" {
+  type = string
 }
 
 data "aws_caller_identity" "current" {}
@@ -95,7 +99,7 @@ resource "aws_kms_key" "kms_cloudtrail" {
             "Principal": {
                 "AWS": [
                     "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root",
-                    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/matthew.lubbers@tdameritrade.com"
+                    "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/terraform"
                 ]
             },
             "Action": [
