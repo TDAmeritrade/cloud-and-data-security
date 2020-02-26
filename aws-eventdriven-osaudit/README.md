@@ -1,4 +1,4 @@
-# AWS Event-Driven OS Audit (aws-eventdriven-osaudit)
+# AWS Event-Driven OS Audit 
 
 ## Overview
 

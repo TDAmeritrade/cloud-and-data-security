@@ -1,4 +1,4 @@
-# Azure Policy OS Audit & Monitoring (azure-policy-osaudit)
+# Azure Policy OS Audit & Monitoring
 
 ## Prerequisites
 

@@ -1,4 +1,4 @@
-# AWS Event Driven VPC Flow Logs (aws-eventdriven-vpcflowlogs)
+# AWS Event Driven VPC Flow Logs
 
 ## Overview
 

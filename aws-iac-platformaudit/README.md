@@ -1,4 +1,4 @@
-# AWS Infrastructure-as-Code Platform Audit (aws-iac-platformaudit)
+# AWS Infrastructure-as-Code Platform Audit
 
 ## Overview
 

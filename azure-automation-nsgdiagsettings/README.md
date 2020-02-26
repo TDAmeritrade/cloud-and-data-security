@@ -1,4 +1,4 @@
-# Azure Automation NSG Flow Logs & Resource Logs (azure-automation-nsgdiagsettings)
+# Azure Automation NSG Flow Logs & Resource Logs
 
 ## Prerequisites
 
