@@ -11,6 +11,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 resource "aws_iam_role" "lambda_role" {
+  name = "enable-flow-logs-lambda-${var.aws_region}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -28,6 +29,7 @@ EOF
 }
 
 resource "aws_iam_role" "invocation_role" {
+  name = "enable-flow-logs-invoke-${var.aws_region}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -45,6 +47,7 @@ EOF
 }
 
 resource "aws_iam_role" "flowlogs_role" {
+  name = "enable-flow-logs-role-${var.aws_region}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",

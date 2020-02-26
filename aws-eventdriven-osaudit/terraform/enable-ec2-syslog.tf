@@ -11,6 +11,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 resource "aws_iam_role" "lambda_role" {
+  name = "syslog-lambda-${var.aws_region}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -28,7 +29,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "CreateEC2Syslog" {
-  name = "CreateEC2Syslog"
+  name = "EnableEC2Syslog"
   role = "${aws_iam_role.lambda_role.id}"
   policy = <<EOF
 {
@@ -78,6 +79,7 @@ EOF
 }
 
 resource "aws_iam_role" "invocation_role" {
+  name = "syslog-invoke-${var.aws_region}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -114,7 +116,7 @@ EOF
 }
 
 resource "aws_iam_role" "ec2syslog_role" {
-  name = "Syslog"
+  name = "Syslog-${var.aws_region}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -132,7 +134,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "ec2syslog_profile" {
-  name = "ec2syslog"
+  name = "syslog"
   role = "${aws_iam_role.ec2syslog_role.name}"
 }
 

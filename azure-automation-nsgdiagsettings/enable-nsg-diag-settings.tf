@@ -36,7 +36,7 @@ resource "azurerm_automation_runbook" "automation_runbook_diag" {
   automation_account_name = "${data.azurerm_automation_account.automation_account.name}"
   log_verbose             = "true"
   log_progress            = "true"
-  description             = "This is an example runbook"
+  description             = "This runbook automates the enablement of diagnostic settings per Azure resource"
   runbook_type            = "PowerShell"
 
   publish_content_link {
@@ -53,7 +53,7 @@ resource "azurerm_automation_runbook" "automation_runbook_nsg" {
   automation_account_name = "${data.azurerm_automation_account.automation_account.name}"
   log_verbose             = "true"
   log_progress            = "true"
-  description             = "This is an example runbook"
+  description             = "This runbook automates the enablement of NSG flow logs per NSG and storage account region"
   runbook_type            = "PowerShell"
 
   publish_content_link {
