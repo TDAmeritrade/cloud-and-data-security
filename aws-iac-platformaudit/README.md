@@ -1,41 +1,42 @@
-# Cloud & Data Security
-RSAC 2020 - The Fog of Cloud Security Logging
+# AWS Infrastructure-as-Code Platform Audit (aws-iac-platformaudit)
+
+## Overview
+
+Deploying this solution will enable platform-level auditing within the executed AWS account for all regions using CloudTrail. As part of the 'logging' template, two private S3 bucket with their appropriate S3 bucket policies are created along with the enablement of S3 bucket encryption using AWS KMS. As part of the 'spoke' template, the previously created S3 bucket will be provided to CloudTrail for log storage. Using an IAM Role and IAM Policy, the CloudTrail service is able to publish CloudTrail logs to the provided S3 bucket.
+
+If you are expriencing issues with deploying the 'logging' KMS key policy, change the 'user/terraform' to any user who needs key management priviledges and re-deploy.
 
 ## Prerequisites
 
-* Packer
+* An AWS Account
 * Terraform
-
-## Installation
-
-For Windows:
-
-```powershell
-choco install packer -y
-choco install terraform -y
-```
-
-For Mac OS:
-
-```bash
-brew install packer
-brew install terraform
-```
 
 ## Usage
 
-Each solution is separated by directory.
+1. Change directory to 'aws-iac-platformaudit/logging'
+2. Initialize the terraform template
+```bash
+terraform init
+```
+3. Apply the terraform template
+```bash
+terraform apply
+```
+4. Provide an AWS Region for the resources to be deployed to
 
-AWS Solutions
-* AWS Infrastructure-as-Code Platform Audit (aws-iac-platformaudit)
-* AWS Event-Driven VPC Flow Logs (aws-eventdriven-vpcflowlogs)
-* AWS Event-Driven OS Audit (aws-eventdriven-osaudit)
+For each AWS account, follow these steps:
 
-Azure Solutions
-* Azure Automation NSG Flow Logs & Resource Logs (azure-automation-nsgdiagsettings)
-* Azure Policy OS Audit & Monitoring (azure-policy-osaudit)
+1. Change directory to 'aws-iac-platformaudit/spoke'
+2. Initialize the terraform template
+```bash
+terraform init
+```
+3. Apply the terraform template
+```bash
+terraform apply
+```
+4. Provide an AWS Region for the resources to be deployed to
 
-A single readme file will be located inside of each directory which provides step-by-step instructions to deploy each solution.
 
 NOTE: These solutions are purely for demonstrational purposes and should be customized for your organization for any production deployments
 

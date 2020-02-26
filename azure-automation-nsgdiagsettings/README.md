@@ -1,41 +1,38 @@
-# Cloud & Data Security
-RSAC 2020 - The Fog of Cloud Security Logging
+# Azure Automation NSG Flow Logs & Resource Logs (azure-automation-nsgdiagsettings)
 
 ## Prerequisites
 
-* Packer
+* An Existing Log Analytics Workspace
+* An Existing Automation Account (with Azure Run As Account)
+* An Existing Storage Account
+* Subscription-level Contributor
 * Terraform
-
-## Installation
-
-For Windows:
-
-```powershell
-choco install packer -y
-choco install terraform -y
-```
-
-For Mac OS:
-
-```bash
-brew install packer
-brew install terraform
-```
 
 ## Usage
 
-Each solution is separated by directory.
-
-AWS Solutions
-* AWS Infrastructure-as-Code Platform Audit (aws-iac-platformaudit)
-* AWS Event-Driven VPC Flow Logs (aws-eventdriven-vpcflowlogs)
-* AWS Event-Driven OS Audit (aws-eventdriven-osaudit)
-
-Azure Solutions
-* Azure Automation NSG Flow Logs & Resource Logs (azure-automation-nsgdiagsettings)
-* Azure Policy OS Audit & Monitoring (azure-policy-osaudit)
-
-A single readme file will be located inside of each directory which provides step-by-step instructions to deploy each solution.
+1. Change directory to 'azure-automation-nsgdiagsettings'
+2. Initialize the terraform template
+```bash
+terraform init
+```
+4. Change each PowerShell scripts variables to the appropriate values
+* enableDiagnosticSettings.ps1
+* * $logAnalyticsWorkspaceName - Name of the Log Analytics Workspace
+* * $logAnalyticsResourceGroupName - Resource Group of the Log Analytics Workspace
+* * $logAnalyticsSubscriptionId - Subscription ID of the Log Analytics Workspace
+* enableNsgFlowLogs.ps1
+* * $logAnalyticsWorkspaceName - Name of the Log Analytics Workspace
+* * $logAnalyticsResourceGroupName - Resource Group of the Log Analytics Workspace
+* * $logAnalyticsSubscriptionId - Subscription ID of the Log Analytics Workspace
+* * $storageAccountResourceGroupName - Resource Group of the Storage Accounts
+* * $storageAccountSubscriptionId - Subscription ID of the Storage Accounts
+* * $storageAccountRegions - Create a key-value mapping between the NSG & Storage Accounts regions.
+5. Apply the terraform template
+```bash
+terraform apply
+```
+6. Provide the Name of the Automation Account
+7. Provide the Resource Group Name of where the Automation Account resides
 
 NOTE: These solutions are purely for demonstrational purposes and should be customized for your organization for any production deployments
 

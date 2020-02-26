@@ -1,41 +1,26 @@
-# Cloud & Data Security
-RSAC 2020 - The Fog of Cloud Security Logging
+# AWS Event Driven VPC Flow Logs (aws-eventdriven-vpcflowlogs)
+
+## Overview
+
+Deploying this solution will enable VPC Flow Logs per the creation of any newly provisioned VPC within the solutions deployed region. This means that if the solution is deployed to us-east-1, only VPC's created in us-east-1 will be affected by the solution. As part of the template, a few IAM Roles, IAM Policies, a Lambda function, and a CloudWatch Rule will be created to support the enablement of VPC Flow Logs using an event-driven architecture.
 
 ## Prerequisites
 
-* Packer
+* An AWS Account
 * Terraform
-
-## Installation
-
-For Windows:
-
-```powershell
-choco install packer -y
-choco install terraform -y
-```
-
-For Mac OS:
-
-```bash
-brew install packer
-brew install terraform
-```
 
 ## Usage
 
-Each solution is separated by directory.
-
-AWS Solutions
-* AWS Infrastructure-as-Code Platform Audit (aws-iac-platformaudit)
-* AWS Event-Driven VPC Flow Logs (aws-eventdriven-vpcflowlogs)
-* AWS Event-Driven OS Audit (aws-eventdriven-osaudit)
-
-Azure Solutions
-* Azure Automation NSG Flow Logs & Resource Logs (azure-automation-nsgdiagsettings)
-* Azure Policy OS Audit & Monitoring (azure-policy-osaudit)
-
-A single readme file will be located inside of each directory which provides step-by-step instructions to deploy each solution.
+1. Change directory to 'aws-eventdriven-vpcflowlogs
+2. Initialize the terraform template
+```bash
+terraform init
+```
+3. Apply the terraform template
+```bash
+terraform apply
+```
+4. Provide an AWS Region for the resources to be deployed to
 
 NOTE: These solutions are purely for demonstrational purposes and should be customized for your organization for any production deployments
 

@@ -1,41 +1,26 @@
-# Cloud & Data Security
-RSAC 2020 - The Fog of Cloud Security Logging
+# Azure Policy OS Audit & Monitoring (azure-policy-osaudit)
 
 ## Prerequisites
 
-* Packer
+* An Existing Log Analytics Workspace
+* Subscription-level Contributor
 * Terraform
-
-## Installation
-
-For Windows:
-
-```powershell
-choco install packer -y
-choco install terraform -y
-```
-
-For Mac OS:
-
-```bash
-brew install packer
-brew install terraform
-```
 
 ## Usage
 
-Each solution is separated by directory.
-
-AWS Solutions
-* AWS Infrastructure-as-Code Platform Audit (aws-iac-platformaudit)
-* AWS Event-Driven VPC Flow Logs (aws-eventdriven-vpcflowlogs)
-* AWS Event-Driven OS Audit (aws-eventdriven-osaudit)
-
-Azure Solutions
-* Azure Automation NSG Flow Logs & Resource Logs (azure-automation-nsgdiagsettings)
-* Azure Policy OS Audit & Monitoring (azure-policy-osaudit)
-
-A single readme file will be located inside of each directory which provides step-by-step instructions to deploy each solution.
+1. Change directory to 'azure-policy-osaudit'
+2. Initialize the terraform template
+```bash
+terraform init
+```
+3. Apply the terraform template
+```bash
+terraform apply
+```
+4. Provide the Name of the Log Analytics Workspace
+5. Provide a location for the creation of a Managed Service Identity used for Policy remediation tasks
+6. Provide the Name of the Resource Group where the Log Analytics Workspace resides
+7. Provide the Subscription ID of where the Log Analytics Workspace resides
 
 NOTE: These solutions are purely for demonstrational purposes and should be customized for your organization for any production deployments
 
